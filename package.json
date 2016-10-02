@@ -1,6 +1,6 @@
 {
   "name": "aramsay-express-router",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Express routes configured using TypeScript decorators",
   "main": "dist/index.js",
   "scripts": {
@@ -15,6 +15,10 @@
   ],
   "author": "Andrew Ramsay <aramsaybusiness@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewaramsay/aramsay-express-router.git"
+  },
   "dependencies": {
     "core-js": "^2.4.1",
     "express": "^4.14.0",
