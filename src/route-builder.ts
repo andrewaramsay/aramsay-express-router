@@ -1,9 +1,8 @@
+import 'core-js';
+import 'reflect-metadata';
 import { Router, Request, Response, NextFunction } from 'express';
-import { RouteConfig } from './metadata';
 
-export interface ClassFactory {
-    (Class: any): any;
-}
+import { RouteConfig, ClassFactory, routeConfigMetadataKey } from './interfaces';
 
 function defaultClassFactory(Class: any) {
     return new Class();
@@ -12,17 +11,18 @@ function defaultClassFactory(Class: any) {
 export class RouteBuilder {
     classFactory: ClassFactory;
     
-    constructor(private router: Router, classFactory: ClassFactory) {
+    constructor(private router: Router, classFactory?: ClassFactory) {
         this.classFactory = classFactory || defaultClassFactory;
     }
     
     buildRoutes(Class: any) {
-        let routeConfigs: { [key: string]: RouteConfig} = Reflect.getMetadata('routeConfig', Class.prototype);
+        let routeConfigs: { [key: string]: RouteConfig} = Reflect.getMetadata(routeConfigMetadataKey, Class.prototype);
+
         Object.keys(routeConfigs).forEach(key => {
             let route = routeConfigs[key];
             this.router[route.httpMethod](route.api, ...route.middleware, (req: Request, res: Response, next: NextFunction) => {
                 let controller = this.classFactory(Class);
-                route.callMethod(controller)(req, res, next);
+                route.getMethod(controller)(req, res, next);
             });
         })
     }

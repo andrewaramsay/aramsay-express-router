@@ -1,4 +1,7 @@
 "use strict";
+require('core-js');
+require('reflect-metadata');
+var interfaces_1 = require('./interfaces');
 function defaultClassFactory(Class) {
     return new Class();
 }
@@ -9,12 +12,12 @@ var RouteBuilder = (function () {
     }
     RouteBuilder.prototype.buildRoutes = function (Class) {
         var _this = this;
-        var routeConfigs = Reflect.getMetadata('routeConfig', Class.prototype);
+        var routeConfigs = Reflect.getMetadata(interfaces_1.routeConfigMetadataKey, Class.prototype);
         Object.keys(routeConfigs).forEach(function (key) {
             var route = routeConfigs[key];
             (_a = _this.router)[route.httpMethod].apply(_a, [route.api].concat(route.middleware, [function (req, res, next) {
                 var controller = _this.classFactory(Class);
-                route.callMethod(controller)(req, res, next);
+                route.getMethod(controller)(req, res, next);
             }]));
             var _a;
         });

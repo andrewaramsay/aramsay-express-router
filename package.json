@@ -4,8 +4,8 @@
   "description": "Express routes configured using TypeScript decorators",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc --project tsconfig.json",
-    "test": "karma start"
+    "build": "rimraf dist && tsc --project tsconfig.json",
+    "test": "set JASMINE_CONFIG_PATH=jasmine.json&& jasmine-ts src/**/*.spec.ts"
   },
   "keywords": [
     "TypeScript",
@@ -20,5 +20,10 @@
     "express": "^4.14.0",
     "reflect-metadata": "^0.1.8",
     "typescript": "^2.0.3"
+  },
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "jasmine-ts": "0.0.3",
+    "rimraf": "^2.5.4"
   }
 }

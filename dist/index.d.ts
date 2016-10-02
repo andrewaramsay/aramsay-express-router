@@ -1,2 +1,3 @@
 export { Get, Post, Put, Patch, Delete } from './src/metadata';
-export { ClassFactory, RouteBuilder } from './src/route-builder';
+export { RouteBuilder } from './src/route-builder';
+export { ClassFactory } from './src/interfaces';
