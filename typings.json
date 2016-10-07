@@ -1,7 +1,8 @@
 {
   "globalDependencies": {
-    "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
-    "node": "registry:dt/node#6.0.0+20160928143418"
+    "core-js": "registry:dt/core-js#0.0.0+20160914114559",
+    "jasmine": "registry:dt/jasmine#2.5.0+20161003201800",
+    "node": "registry:dt/node#6.0.0+20161006230116"
   },
   "dependencies": {
     "express": "registry:npm/express#4.14.0+20160925001530"
