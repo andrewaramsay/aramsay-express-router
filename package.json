@@ -1,6 +1,6 @@
 {
   "name": "aramsay-express-router",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Express routes configured using TypeScript decorators",
   "main": "dist/index.js",
   "scripts": {
