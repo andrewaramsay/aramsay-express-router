@@ -4,8 +4,9 @@
   "description": "Express routes configured using TypeScript decorators",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rimraf dist && tsc --project tsconfig.json",
-    "test": "set JASMINE_CONFIG_PATH=jasmine.json&& jasmine-ts src/**/*.spec.ts"
+    "build": "npm test && rimraf dist && tsc --project tsconfig.json",
+    "test": "cross-env JASMINE_CONFIG_PATH=jasmine.json jasmine-ts src/**/*.spec.ts",
+    "autotest": "nodemon --watch src/**/*.* --exec npm test"
   },
   "keywords": [
     "TypeScript",
@@ -20,6 +21,7 @@
     "url": "https://github.com/andrewaramsay/aramsay-express-router.git"
   },
   "devDependencies": {
+    "cross-env": "^3.1.2",
     "jasmine": "^2.5.2",
     "jasmine-ts": "0.0.3",
     "rimraf": "^2.5.4"
