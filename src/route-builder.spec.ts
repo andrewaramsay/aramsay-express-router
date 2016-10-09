@@ -18,7 +18,7 @@ interface MetadataTarget {
 }
 
 
-fdescribe('RouteBuilder', () => {
+describe('RouteBuilder', () => {
     let middlewares: Middlewares;
     let target: RouteBuilder;
     let router: Router;
