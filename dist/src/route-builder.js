@@ -1,6 +1,4 @@
 "use strict";
-require('core-js');
-require('reflect-metadata');
 var interfaces_1 = require('./interfaces');
 var RouteBuilder = (function () {
     function RouteBuilder(classFactory) {

@@ -1,5 +1,3 @@
-import 'core-js';
-import 'reflect-metadata';
 import { Router, Request, Response, NextFunction } from 'express';
 
 import { RouteConfig, ClassFactory, routeConfigMetadataKey } from './interfaces';

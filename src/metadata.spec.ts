@@ -1,4 +1,5 @@
 /// <reference path="../typings/index.d.ts" />
+import 'reflect-metadata';
 import { Request, Response, NextFunction } from 'express';
 
 import { Get, Post, Put, Patch, Delete, makeRouteConfigDecorator } from './metadata';

@@ -1,4 +1,8 @@
 "use strict";
+require('core-js');
+if (!Reflect.defineMetadata) {
+    require('reflect-metadata');
+}
 var metadata_1 = require('./src/metadata');
 exports.Get = metadata_1.Get;
 exports.Post = metadata_1.Post;

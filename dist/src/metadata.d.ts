@@ -1,5 +1,3 @@
-import 'core-js';
-import 'reflect-metadata';
 import { HttpMethod, RouteConfigDecorator } from './interfaces';
 export declare function makeRouteConfigDecorator(httpMethod: HttpMethod): RouteConfigDecorator;
 export declare const Get: RouteConfigDecorator;

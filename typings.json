@@ -2,7 +2,8 @@
   "globalDependencies": {
     "core-js": "registry:dt/core-js#0.0.0+20160914114559",
     "jasmine": "registry:dt/jasmine#2.5.0+20161003201800",
-    "node": "registry:dt/node#6.0.0+20161006230116"
+    "node": "registry:dt/node#6.0.0+20161006230116",
+    "reflect-metadata": "registry:dt/reflect-metadata#0.0.0+20160630155503"
   },
   "dependencies": {
     "express": "registry:npm/express#4.14.0+20160925001530"
