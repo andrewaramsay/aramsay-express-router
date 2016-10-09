@@ -39,7 +39,7 @@ describe('RouteBuilder', () => {
         
         router = jasmine.createSpyObj<Router>('router', ['get', 'post', 'put', 'patch', 'delete']);
         classFactory = jasmine.createSpy('classFactory', (C: any) => new C());
-        target = new RouteBuilder(router, classFactory);
+        target = new RouteBuilder(classFactory);
         routeConfig = {
             api: 'some api',
             getMethod: c => c.getMethod.bind(c),
@@ -52,7 +52,7 @@ describe('RouteBuilder', () => {
 
     it('defines the method with the api and middleware', () => {
         spy(classFactory).and.callThrough();
-        target.buildRoutes(TestClass);
+        target.buildRoutes(TestClass, router);
 
         expect(router.get).toHaveBeenCalledWith('some api', middlewares.middleware1, middlewares.middleware2, jasmine.anything());
     });
@@ -64,7 +64,7 @@ describe('RouteBuilder', () => {
         });
         spyOn(TestClass.prototype, 'getMethod');
 
-        target.buildRoutes(TestClass);
+        target.buildRoutes(TestClass, router);
 
         expect(TestClass.prototype.getMethod).toHaveBeenCalledWith(req, res, next);
         expect(spy(TestClass.prototype.getMethod).calls.first().object).toBeTruthy();
@@ -76,7 +76,7 @@ describe('RouteBuilder', () => {
             handler(req, res, next);
         });
 
-        target.buildRoutes(TestClass);
+        target.buildRoutes(TestClass, router);
 
         expect(classFactory).toHaveBeenCalledWith(TestClass);
     });
@@ -89,7 +89,7 @@ describe('RouteBuilder', () => {
         });
         spyOn(routeConfig, 'getMethod').and.callThrough();
 
-        target.buildRoutes(TestClass);
+        target.buildRoutes(TestClass, router);
 
         expect(spy(routeConfig.getMethod).calls.first().args[0]).toBe(instance);
     });
@@ -100,7 +100,7 @@ describe('RouteBuilder', () => {
             method2: { api: 'other api', middleware: [], getMethod: c => c.getMethod.bind(c), httpMethod: 'get' }
         });
 
-        target.buildRoutes(TestClass);
+        target.buildRoutes(TestClass, router);
 
         expect(router.get).toHaveBeenCalledTimes(2);
         expect(router.get).toHaveBeenCalledWith('some api', middlewares.middleware1, middlewares.middleware2, jasmine.anything());
