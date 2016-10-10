@@ -1,16 +1,12 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, Handler, RequestHandler } from 'express';
 
 export const routeConfigMetadataKey = 'aramsay-express-router:routeConfig';
 
 export type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
 export interface RouteConfigDecorator {
-    (api: string, ...middelware: RequestHandler[]): MethodDecorator;
+    (api: string, ...middelware: Handler[]): MethodDecorator;
 }
-
-export interface RequestHandler {
-        (req: Request, res: Response, next: NextFunction): any;
-    }
 
 export interface RouteConfig {
     httpMethod: HttpMethod;
@@ -18,7 +14,6 @@ export interface RouteConfig {
     middleware: RequestHandler[];
     getMethod: (instance: any) => RequestHandler;
 }
-
 
 export interface ClassFactory {
     (Class: any): any;

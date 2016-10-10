@@ -2,13 +2,12 @@
 var interfaces_1 = require('./interfaces');
 var RouteBuilder = (function () {
     function RouteBuilder(classFactory) {
-        this.routeConfigs = [];
         this.classFactory = classFactory || defaultClassFactory;
     }
     RouteBuilder.prototype.buildRoutes = function (Class, router) {
         var _this = this;
         var routeConfigs = Reflect.getMetadata(interfaces_1.routeConfigMetadataKey, Class.prototype);
-        Object.keys(routeConfigs).forEach(function (key) {
+        Reflect.ownKeys(routeConfigs).forEach(function (key) {
             var route = routeConfigs[key];
             router[route.httpMethod].apply(router, [route.api].concat(route.middleware, [function (req, res, next) {
                 var controller = _this.classFactory(Class);

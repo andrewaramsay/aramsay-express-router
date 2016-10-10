@@ -1,13 +1,13 @@
-import { Request, Response, NextFunction } from 'express';
-import { HttpMethod, RequestHandler, RouteConfig, RouteConfigDecorator, routeConfigMetadataKey } from './interfaces';
+import { Request, Response, NextFunction, Handler, RequestHandler } from 'express';
+import { HttpMethod, RouteConfig, RouteConfigDecorator, routeConfigMetadataKey } from './interfaces';
 
 export function makeRouteConfigDecorator(httpMethod: HttpMethod): RouteConfigDecorator {
-    return function(api: string, ...middleware: RequestHandler[]): MethodDecorator {
+    return function(api: string, ...middleware: Handler[]): MethodDecorator {
         return function(classPrototype: Object, propertyKey: string | symbol, descriptor: PropertyDescriptor): PropertyDescriptor {
             let routeConfig: RouteConfig = { 
                 httpMethod: httpMethod,
                 api,
-                middleware,
+                middleware: <RequestHandler[]>middleware,
                 getMethod: ctrl => ctrl[propertyKey].bind(ctrl)
             };
             let routeConfigs = Reflect.getMetadata(routeConfigMetadataKey, classPrototype) || {};

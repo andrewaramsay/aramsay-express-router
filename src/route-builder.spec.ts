@@ -1,8 +1,8 @@
 /// <reference path="../typings/index.d.ts" />
-import { Request, Response, NextFunction, Router } from 'express';
+import { Request, Response, NextFunction, Router, RequestHandler } from 'express';
 
 import { RouteBuilder } from './route-builder';
-import { routeConfigMetadataKey, RouteConfig, RequestHandler, ClassFactory } from './interfaces';
+import { routeConfigMetadataKey, RouteConfig, ClassFactory } from './interfaces';
 
 function spy(method: any) {
     return <jasmine.Spy>method;
